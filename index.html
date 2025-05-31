@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Proyecto Big Data - Avistamientos OVNI</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Proyecto Big Data - Análisis de Avistamientos OVNI</h1>
+        <p class="autor">Nombre: Jose Esteban Romero Huentrepan - Mayo 2025</p>
+        <p class="autor">Profesor: Fernando Esteban Fuentes Gallegos</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>1. Creación del Bucket en Google Cloud Storage</h2>
+            <p>
+                Como primer paso del proyecto, fue necesario habilitar un espacio de almacenamiento en la nube para
+                cargar y
+                centralizar los datos. Para ello, se creó un bucket en Google Cloud Storage con el nombre
+                <strong>jose-huentrepan</strong>. Este bucket actúa como contenedor del archivo original
+                <code>ufo_sightings.xlsx</code>, el cual contiene más de 18000 registros de avistamientos de OVNIs.
+            </p>
+            <img src="img/creacion-bucket.png" alt="Creación del bucket en GCP" />
+        </section>
+
+        <section>
+            <h2>2. Creación del Dataset en BigQuery (Dataprep)</h2>
+            <p>
+                Posteriormente, se creó un proyecto de preparación de datos llamado <strong>ovni</strong>. Este proyecto
+                permitió conectarse al bucket anteriormente creado, analizar la estructura del archivo y establecer la
+                base para
+                las transformaciones posteriores. Esta conexión entre Cloud Storage y BigQuery es clave para integrar
+                los datos
+                al ecosistema analítico.
+            </p>
+            <img src="img/bigquery.png" alt="Configuración del dataset en BigQuery" />
+        </section>
+
+        <section>
+            <h2>3. Conexión del Dataset en Alteryx Designer Cloud</h2>
+            <p>
+                En esta etapa, se utilizó <strong>Alteryx Designer Cloud (Dataprep)</strong> para importar el dataset
+                desde el
+                bucket. Al hacerlo, se inicia un flujo visual de trabajo que permite revisar, explorar y transformar los
+                datos
+                sin necesidad de escribir código. Esto facilitó la detección de columnas inválidas, nulos, valores
+                atípicos y
+                errores de formato.
+            </p>
+            <img src="img/conexion.png" alt="Conexión al dataset en Alteryx Designer Cloud" />
+        </section>
+
+        <section>
+            <h2>4. Preparación y Limpieza de Datos</h2>
+            <p>
+                Se construyó una receta de limpieza que incluyó múltiples pasos esenciales para asegurar la calidad del
+                análisis. Algunas de las acciones realizadas fueron:
+            </p>
+            <ul>
+                <li>Eliminación de registros con campos críticos vacíos (como fecha, país o forma de avistamiento).</li>
+                <li>Renombramiento y estandarización de columnas (convertir los nombres de estados a
+                    mayúsculas).</li>
+                <li>Conversión de latitudes y longitudes a escala decimal y filtrado por coordenadas válidas.</li>
+                <li>Corrección de formatos de texto en las columnas categóricas como <code>UFO_shape</code>.</li>
+            </ul>
+            <p>
+                Gracias a este proceso, se redujeron los errores, se homogenizaron los datos y se dejaron listos para su
+                carga en
+                BigQuery.
+            </p>
+            <img src="img/conexion y preparacion.png" alt="Proceso de transformación y limpieza en Alteryx" />
+        </section>
+
+        <section>
+            <h2>5. Consultas SQL en BigQuery</h2>
+            <p>
+                Una vez transformados y cargados los datos en BigQuery, se realizaron varias consultas SQL para extraer
+                métricas
+                significativas del fenómeno OVNI. Algunas de las consultas realizadas fueron:
+            </p>
+            <ul>
+                <li><strong>Total de avistamientos:</strong> recuento global de registros válidos.</li>
+                <li><strong>Top 5 formas de OVNI:</strong> clasificación por forma visual reportada con más frecuencia.
+                </li>
+                <li><strong>Avistamientos por estado:</strong> distribución geográfica dentro de EE.UU.</li>
+                <li><strong>Frecuencia anual:</strong> evolución de los reportes por año, permitiendo detectar patrones
+                    temporales.</li>
+            </ul>
+            <p>Estas consultas sirvieron como base para la generación de visualizaciones más claras y comprensibles.</p>
+            <img src="img/consultas sql.png" alt="Ejecución de consultas en BigQuery" />
+        </section>
+
+        <section>
+            <h2>6. Visualizaciones en Looker Studio</h2>
+            <p>
+                Finalmente, se diseñó un dashboard interactivo en <strong>Looker Studio</strong> (antes Google Data
+                Studio),
+                donde se representaron gráficamente los principales hallazgos:
+            </p>
+            <ul>
+                <li>Gráfico de barras con el total de avistamientos por forma de OVNI.</li>
+                <li>Mapa geográfico que muestra la concentración de reportes por estado.</li>
+                <li>Serie temporal para visualizar el comportamiento año a año.</li>
+                <li>Distribuciones de duración del avistamiento.</li>
+            </ul>
+            <p>
+                Estas visualizaciones permiten identificar con facilidad tendencias, concentraciones y comportamientos
+                atípicos
+                que de otra manera serían difíciles de detectar.
+            </p>
+            <img src="img/looker studio.png" alt="Dashboard final con métricas del análisis" />
+        </section>
+    </main>
+</body>
+
+</html>
